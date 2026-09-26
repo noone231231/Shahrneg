@@ -1,14 +1,22 @@
 # راه‌اندازی شهرنگار روی Render
 
-این نسخه برای Node.js + PostgreSQL آماده شده است.
+## برای اینکه سایت همین الان بالا بیاید
+اگر `DATABASE_URL` هنوز در Render تنظیم نشده باشد، نسخه جدید در حالت موقت اجرا می‌شود و محصولات نمونه را نمایش می‌دهد. این حالت برای تست است و با ری‌استارت/دیپلوی دوباره، محصولات و سفارش‌های موقت از بین می‌روند.
+
+## برای فروشگاه واقعی و دائمی
+در Render یک PostgreSQL Database بساز و `DATABASE_URL` آن را به Environment Variables سرویس Web اضافه کن. سپس Deploy کن.
 
 Environment Variables:
-- DATABASE_URL = آدرس اتصال PostgreSQL
-- SESSION_SECRET = یک رشته طولانی و تصادفی
-- SETUP_KEY = یک کلید موقت برای ساخت مدیر
-- NODE_ENV = production
+- `DATABASE_URL` = آدرس PostgreSQL
+- `SESSION_SECRET` = یک مقدار طولانی و تصادفی
+- `SETUP_KEY` = یک کلید راه‌اندازی قوی
 
-Build Command: npm install
-Start Command: npm start
+بعد از اتصال PostgreSQL، جدول‌های محصولات، کاربران، سفارش‌ها و اقلام سفارش به‌صورت خودکار ساخته می‌شوند و محصولات اولیه نیز فقط در اولین راه‌اندازی دیتابیس درج می‌شوند.
 
-بعد از Deploy، یک بار POST به `/api/setup-admin` با `name`, `email`, `password`, `setupKey` بزنید و سپس از `/login.html` وارد پنل شوید.
+## آدرس‌ها
+- فروشگاه: `/`
+- ورود مدیر: `/login`
+- پنل مدیریت: `/admin`
+- بررسی سلامت سرور: `/health`
+
+دکمه مدیریت عمداً از فروشگاه عمومی حذف شده است.
